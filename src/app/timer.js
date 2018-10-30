@@ -16,6 +16,16 @@ export default class Timer extends Component {
     setInterval(this.tick, 1000);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.minutes !== this.state.minutes || prevState.seconds !== this.state.seconds) {
+      if (this.state.minutes === 0 && this.state.seconds === 0) {
+        this.setState({
+          started: false
+        });
+      }
+    }
+  }
+
   renderSeconds = seconds => {
     return String(seconds).padStart(2,0);
   };
@@ -31,8 +41,7 @@ export default class Timer extends Component {
       if (this.state.minutes === 0) {
         this.setState({
           minutes: 0,
-          seconds: 0,
-          started: false
+          seconds: 0
         });
       } else {
         this.setState({
@@ -59,8 +68,7 @@ export default class Timer extends Component {
         } else if (minutes === 0) {
           this.setState({
             seconds: 0,
-            minutes: 0,
-            started: false
+            minutes: 0
           });
         }
       } else {
@@ -70,6 +78,8 @@ export default class Timer extends Component {
         });
       }
     }
+
+    document.title = `Pomodoro Timer {${minutes}:${this.renderSeconds(seconds)}}`;
   };
 
   toggleStarted = () => {
