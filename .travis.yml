@@ -1,0 +1,23 @@
+language: node_js
+
+node_js:
+- "stable"
+
+cache:
+  directories:
+  - "$HOME/.npm"
+
+install:
+- npm install
+
+script:
+- npm run build
+
+deploy:
+  project: ./dist/
+  provider: surge
+  domain: ztoben-react-pomodoro.surge.sh
+  skip-cleanup: true
+  keep-history: true
+  on:
+    branch: master
