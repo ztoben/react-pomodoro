@@ -36,8 +36,8 @@ export default class Timer extends Component {
 
   addMinute = () => {
     this.setState({
-      minutes: this.state.minutes + 1,
-      startingMinutes: this.state.minutes + 1,
+      minutes: this.state.minutes + 5,
+      startingMinutes: this.state.minutes + 5,
       started: false
     });
   };
