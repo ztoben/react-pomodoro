@@ -12,7 +12,7 @@ export default class Timer extends Component {
       seconds: 0,
       startingMinutes: 0,
       startingSeconds: 0,
-      progress: '100'
+      progress: '0'
     }
   }
 
@@ -75,7 +75,7 @@ export default class Timer extends Component {
         && startingSeconds === 0
         && minutes === 0
         && seconds === 0)
-        ? '100' :  ((minutes * 60 + seconds) / (startingMinutes * 60 + startingSeconds) * 100).toString();
+        ? '0' :  ((minutes * 60 + seconds) / (startingMinutes * 60 + startingSeconds) * 100).toString();
 
     this.setState({
       progress
