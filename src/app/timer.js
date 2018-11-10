@@ -85,15 +85,12 @@ export default class Timer extends Component {
   getTitle = () => {
     const {
       seconds,
-      minutes,
-      started
+      minutes
     } = this.state;
 
     if (minutes === 0 && seconds === 0) return 'Pomodoro Timer';
 
-    const timeRemaining = `[${minutes}:${this.renderSeconds(seconds)}]`;
-
-    return started ? timeRemaining : `${timeRemaining} - Stopped`;
+    return `Pomodoro Timer - [${minutes}:${this.renderSeconds(seconds)}]`;
   };
 
   tick = () => {
