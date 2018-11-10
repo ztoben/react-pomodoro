@@ -82,6 +82,20 @@ export default class Timer extends Component {
     });
   };
 
+  getTitle = () => {
+    const {
+      seconds,
+      minutes,
+      started
+    } = this.state;
+
+    if (minutes === 0 && seconds === 0) return 'Pomodoro Timer';
+
+    const timeRemaining = `[${minutes}:${this.renderSeconds(seconds)}]`;
+
+    return started ? timeRemaining : `${timeRemaining} - Stopped`;
+  };
+
   tick = () => {
     let {seconds, minutes, started} = this.state;
 
@@ -110,14 +124,12 @@ export default class Timer extends Component {
       }
     }
 
-    document.title = `Pomodoro Timer {${minutes}:${this.renderSeconds(seconds)}}`;
+    document.title = this.getTitle();
     this.setProgress();
   };
 
   toggleStarted = () => {
-    const started = !this.state.started
-      && this.state.minutes !== 0
-      && this.state.minutes !== 0;
+    const started = (this.state.minutes === 0 && this.state.seconds === 0) ? false : !this.state.started;
 
     this.setState({
       started
