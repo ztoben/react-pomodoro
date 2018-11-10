@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Circle from 'react-circle';
 import '../style/timer.scss';
 
 export default class Timer extends Component {
@@ -8,7 +9,10 @@ export default class Timer extends Component {
     this.state = {
       started: false,
       minutes: 0,
-      seconds: 0
+      seconds: 0,
+      startingMinutes: 0,
+      startingSeconds: 0,
+      progress: '100'
     }
   }
 
@@ -31,8 +35,10 @@ export default class Timer extends Component {
   };
 
   addMinute = () => {
-    if (this.state.minutes < 60) this.setState({
-      minutes: this.state.minutes + 1
+    this.setState({
+      minutes: this.state.minutes + 1,
+      startingMinutes: this.state.minutes + 1,
+      started: false
     });
   };
 
@@ -41,14 +47,41 @@ export default class Timer extends Component {
       if (this.state.minutes === 0) {
         this.setState({
           minutes: 0,
-          seconds: 0
+          seconds: 0,
+          startingMinutes: 0,
+          startingSeconds: 0,
+          started: false
         });
       } else {
         this.setState({
-          minutes: this.state.minutes - 1
+          minutes: this.state.minutes - 1,
+          startingMinutes: this.state.minutes - 1,
+          started: false
         });
       }
     }
+  };
+
+  setProgress = () => {
+    const {
+      startingMinutes,
+      startingSeconds,
+      minutes,
+      seconds
+    } = this.state;
+
+    const progress =
+      (startingMinutes === 0
+        && startingSeconds === 0
+        && minutes === 0
+        && seconds === 0)
+        ? '100' :  Math.round(((startingMinutes * 60 + startingSeconds) / (minutes * 60 + seconds)) * 100).toString();
+
+    console.log(progress);
+
+    this.setState({
+      progress
+    });
   };
 
   tick = () => {
@@ -80,6 +113,7 @@ export default class Timer extends Component {
     }
 
     document.title = `Pomodoro Timer {${minutes}:${this.renderSeconds(seconds)}}`;
+    this.setProgress();
   };
 
   toggleStarted = () => {
@@ -94,7 +128,8 @@ export default class Timer extends Component {
     const {
       started,
       minutes,
-      seconds
+      seconds,
+      progress
     } = this.state;
 
     return (
@@ -109,6 +144,18 @@ export default class Timer extends Component {
             {started ? 'Stop' : 'Start'}
           </button>
         </div>
+        <Circle
+          animate={true}
+          animationDuration="1s"
+          responsive={true}
+          lineWidth="4"
+          progress={progress}
+          progressColor="black"
+          bgColor="lightgray"
+          roundedStroke={false}
+          showPercentage={false}
+          showPercentageSymbol={false}
+        />
       </div>
     )
   }

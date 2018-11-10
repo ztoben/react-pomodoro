@@ -9,6 +9,13 @@
     align-items: center;
     cursor: pointer;
   }
+
+  svg {
+    position: absolute;
+    z-index: -100;
+    left: 0;
+    top: 0;
+  }
 }
 
 .timer {
