@@ -38,7 +38,7 @@ export default class Timer extends Component {
     this.setState({
       minutes: this.state.minutes + 5,
       startingMinutes: this.state.minutes + 5,
-      started: false
+      startingSeconds: this.state.seconds
     });
   };
 
@@ -56,7 +56,7 @@ export default class Timer extends Component {
         this.setState({
           minutes: this.state.minutes - 1,
           startingMinutes: this.state.minutes - 1,
-          started: false
+          startingSeconds: this.state.seconds
         });
       }
     }
@@ -75,9 +75,7 @@ export default class Timer extends Component {
         && startingSeconds === 0
         && minutes === 0
         && seconds === 0)
-        ? '100' :  Math.round(((startingMinutes * 60 + startingSeconds) / (minutes * 60 + seconds)) * 100).toString();
-
-    console.log(progress);
+        ? '100' :  ((minutes * 60 + seconds) / (startingMinutes * 60 + startingSeconds) * 100).toString();
 
     this.setState({
       progress
@@ -117,7 +115,9 @@ export default class Timer extends Component {
   };
 
   toggleStarted = () => {
-    const started = !this.state.started;
+    const started = !this.state.started
+      && this.state.minutes !== 0
+      && this.state.minutes !== 0;
 
     this.setState({
       started
