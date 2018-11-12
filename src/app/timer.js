@@ -144,9 +144,9 @@ export default class Timer extends Component {
     return (
       <div className="timer-container">
         <div className="timer">
-          <button onClick={this.subtractMinute}>-</button>
+          <button className="minus-time" onClick={this.subtractMinute}>-</button>
           <span>{minutes}:{this.renderSeconds(seconds)}</span>
-          <button onClick={this.addMinute}>+</button>
+          <button className="add-time" onClick={this.addMinute}>+</button>
         </div>
         <div className="controls">
           <button onClick={this.toggleStarted}>
