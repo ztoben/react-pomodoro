@@ -1,3 +1,18 @@
+$tablet-width: 450px;
+$desktop-width: 1200px;
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
 .timer-container {
   font-size: 100px;
 
@@ -20,7 +35,15 @@
 
 .timer {
   > * {
-    font-size: 100px;
+    font-size: 50px;
+
+    @include tablet {
+      font-size: 100px;
+    }
+
+    @include desktop {
+      font-size: 150px;
+    }
   }
 
   span {
@@ -29,6 +52,10 @@
     justify-content: center;
     cursor: default;
     background: none;
+
+    @include desktop {
+      width: 400px;
+    }
   }
 
   button {
@@ -39,7 +66,15 @@
 
 .controls {
   button {
-    font-size: 50px;
+    font-size: 25px;
+
+    @include tablet {
+      font-size: 50px;
+    }
+
+    @include desktop {
+      font-size: 100px;
+    }
   }
 
   height: 50px;

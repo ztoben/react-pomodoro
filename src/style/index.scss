@@ -9,4 +9,6 @@ body {
   flex-direction: column;
   justify-content: center;
   font-family: 'Karla', sans-serif;
+  min-width: 300px;
+  overflow: hidden;
 }
