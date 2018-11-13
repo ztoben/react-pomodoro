@@ -59,8 +59,16 @@ $desktop-width: 1200px;
   }
 
   button {
-    width: 100px;
+    width: 50px;
     background: none;
+
+    @include tablet {
+      width: 100px;
+    }
+
+    @include desktop {
+      width: 150px;
+    }
   }
 }
 
