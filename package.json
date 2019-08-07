@@ -29,7 +29,7 @@
     "react-dom": "16.8.6",
     "react-hot-loader": "4.12.10",
     "sass-loader": "7.1.0",
-    "style-loader": "0.23.1",
+    "style-loader": "1.0.0",
     "url-loader": "2.1.0",
     "webpack": "4.39.1",
     "webpack-cli": "3.3.6",
