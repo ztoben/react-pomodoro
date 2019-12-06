@@ -16,9 +16,9 @@
     "react-circle": "1.1.1"
   },
   "devDependencies": {
-    "@babel/core": "7.7.4",
+    "@babel/core": "7.7.5",
     "@babel/plugin-proposal-class-properties": "7.7.4",
-    "@babel/preset-env": "7.7.4",
+    "@babel/preset-env": "7.7.5",
     "@babel/preset-react": "7.7.4",
     "babel-loader": "8.0.6",
     "css-loader": "3.2.1",
